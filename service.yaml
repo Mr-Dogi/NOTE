@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name:
+  namespace:
+spec:
+  - name:
+    port:
+    targetPort:
+    protocol:
+  
+  ports:
+    port:                          // 클러스터 ip에 접근할때 사용할 포트
+    targetPort:                    // 파드들의 내부적으로 사용할 포트
+
+  selector:                        // 어떤하벨을 가진 파드에 접근할것인지 명시
+    app:
+
+  type: ClusterIP                  // 서비스 타입을 나타냄

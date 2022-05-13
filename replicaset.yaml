@@ -1,0 +1,31 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: hello
+  namespace: hellowolrd
+spec:
+  containers:
+    - name: hello pod
+      image: busybox
+      args: []
+      env:                // configmap or secret 설정
+      - name:
+        valueFrom:                
+          configMapKeyRef:
+            name:
+            key:
+
+      volumeMounts:       // 파일 마운트 -v 옵션과 유사
+      - name:
+        path:
+    
+      envFrom:            // configmap 전체 사용
+      - configMapRef:
+          name:
+
+  volumes:                //  마운트 세부설정
+  - name:
+    emptyDir: {}
+
+    hostPath:
+      path:

@@ -1,0 +1,94 @@
+apiVersion: v1
+kind: Pod Deployment Service ReplicaSet Namespace Ingress
+metadata:
+  name:   hello-name
+  namespace:   hello
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: heloolabel
+  template:
+    metadata:
+      name: hello-name
+      labels: heloolabel
+    spec:
+      containers:
+        - name: hello-container
+          image: busybox
+          args: ['tail','-f','/경로']
+          ports:
+            - containerPort: 80
+              protocol: TCP
+              name:
+
+          env:
+          - name:
+            valueFrom:
+              configMapKeyRef:        
+                name:
+                key:
+
+          volumeMounts:
+          - name:
+            mountPath:
+          
+          envFrom:
+          - configMapRef:
+              name:
+          - configMapRef:
+              name:
+
+      volumes:
+      - name:
+        configMapRef:
+          name:
+          items:
+          - key:
+            path:
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: hello-svc
+  namespace: hello
+spec:
+  ports:
+  - name:
+    port:
+    targetPort:
+    protocol: TCP
+  
+  - name:
+    port:
+    targetPort:
+    protocol:
+  
+  selector:
+    app: webserver
+  type: ClusterIP  NodePort
+
+  kubectl create configmap hello --from-literal kube=01 --from-file conf 
+
+  kubectl create secret generic --from-literal pw=1234 --from-file pw.txt --from-env-file pw2.env
+
+  kubectl create namespace hello
+
+  kubectl get pod --namespace hello     kubectl get pod --show-labels
+
+  kubectl describe pod hello     kubectl apply -f hello.yaml     kubectl get nodes
+
+  kubectl apply -f hello.yaml --dry-run=client -o yaml
+
+  kubectl rollout undo deployment  hello --to-revision=1
+
+  kubectl rollout history deployment hello 
+
+  kubectl edit deployment hello 
+
+  kubectl set image deployment hello nginx=nginx:1.11   
+
+  --record 옵션 1.23 이후로 사용안함 대체제 많음
+

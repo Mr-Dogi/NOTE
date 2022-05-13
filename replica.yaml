@@ -1,0 +1,50 @@
+apiVersion: v1
+kind:                                  // 오브젝트 타입 명시
+metadata:             
+  name:
+  namespace:
+spec:
+  replicas:                             // 파드를 몇개 생성하고 유지할것인지
+  selecor:
+    matchLabels:                        // 서로 같은 라벨을 사용하는 포드들을 관리한다
+      app:                              
+
+  template:                             // 파드 생성에 사용할 템플릿 정의
+    metadata:                           
+      name:
+      labels:                           // 파드가 사용할 라벨 정의
+        app:                    
+
+    spec:
+      containers: 
+        - name:                         // 컨테이너 명칭
+          image:                        // 컨테이너 생성시 사용할 이미지파일
+          ports:     
+            - containerPort:            // 파드가 오픈할 포트 정의
+               protocol:                // 사용할 프로토콜 정의
+               
+           env:
+           - name:                           // 컨테이너에 새롭게 등록될 환경변수 이름
+               valueFrom:                      
+                 configMapKeyRef:
+                   name:                      // configmap 지정
+                   key:                       // 키값 지정
+           - name:                            // 여러개 정의 가능
+        
+          envFrom:                            // 컨피그맵 시크릿 해당이름의 값 다 가져옴
+          - configMapRef:                    
+              name:                           // configmap 이름 
+          
+
+          volumeMounts:                       // volume 마운트 -v --volume 과 비슷한 옵션 내부 어디에 할것인지 정의
+            - name:                           // volume에 정의된 볼륨 가져옴
+              mountPath:                      //파드에 마운트 포인트
+
+      volumes:
+      - name:                                 // 컨피그맵 volume  정의
+        configMap:       
+          name: 
+          items:                              // 개별적으로 불러올때 사용
+          - key: 
+            path:                             // 최종파일이름
+      

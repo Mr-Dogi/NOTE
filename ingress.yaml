@@ -1,0 +1,23 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: ingress-example
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /
+    kubernetes.io/ingress.class: "nginx"
+spec:
+  rules:
+  - host: alicek106.example.com               // 해당 도메인으로 온 요청 서비스에 정의한 규칙 적용
+    http:
+      paths:
+      - path: /echo-hostname                  // 해당 도메인 해당 경로로 들어온 요청을 서비스와 포트로 넘김
+        pathType: Prefix
+        backend: 
+          service: 
+            name: hostname-service            // path로 들어온 요쳥이 전달되는 서비스
+            port: 
+              number: 80
+
+인그레스는 외부에서 내부의 애플리케이션에 요청을 할수있도록 규칙을 정의 관리하는것
+외부 요청 라우팅  가상 호스트 기반의 요청 처리 보안 연결 처리
+

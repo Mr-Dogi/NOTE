@@ -1,0 +1,41 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: my-ebs-pvc
+spec:
+ 
+  // selector:
+        matchLabel:
+          region: ap-northeast-2a   //특정 pv와 바인딩 하기 위한 옵션
+
+  storageClassName: ""       //pv와 연결한다 하지만 "" 값 없음을 뜻한다
+
+  accessModes:
+    - ReadWriteOnce     - ReadOnlyMany      - ReadWriteMany
+
+  resources:
+    requests:
+      stroage: 5Gi              //pv에서 설정한 용량 못 넘어감
+  
+---
+
+apiVersion: v1
+kind: Pod
+
+metadata:
+  name: ebs-mount-container
+
+spec:
+
+  containers:
+    - name: ebs-mount-container
+      image: busybox
+      args: [ "tail", "-f", "/dev/null"]
+      volumeMount:
+      - name: ebs-volume
+        mountPath: /mnt
+
+  volumes:
+  - name: ebs-volume
+    persistentVolumeClaim:
+      claimName: my-ebs-pvc

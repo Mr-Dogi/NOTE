@@ -1,0 +1,20 @@
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: ebs-pv
+  //labels:
+  //   region: ap-northeast-2a    //   해당 옵션을 통하여   바인드 할수도있다.
+
+spec:
+
+  capicity:
+    storage: 5Gi
+
+  accessModes:
+    - ReadWriteOnce
+
+  //storageClassName: my-ebs-volume         //pvc연결할때 사용함
+
+  awsElasticBlockStore:
+    fsType: ext4
+    volumeID: <VOLUME_ID>
