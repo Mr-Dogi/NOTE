@@ -11,7 +11,8 @@ spec:
   template:
     metadata:
       name: hello-name
-      labels: heloolabel
+      labels:
+        app: heloolabel
     spec:
       containers:
         - name: hello-container
