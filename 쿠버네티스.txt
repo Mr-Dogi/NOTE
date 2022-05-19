@@ -32,6 +32,7 @@ spec:
          containers:
            - name:
              image:     // 사용할 이미지
+             args: [""]
              ports:
                 - containerPort:
                    protocol
@@ -54,9 +55,11 @@ spec:
  
             volumes:
             - name:
-               emptyDir: {}
+               emptyDir: {} 
+               // 파드 간의 데이터 공유 가능
      
                hostpath:
+               // 호스트와 데이터 공유
 
                configMapRef:
                  name:
@@ -95,4 +98,33 @@ spec:
     app:
   type:                     // clusterip nodeip load
                
-                   
+  
+ ----------------------------
+ 
+apiVersion:
+kind: Role
+matadata:
+  namespace:                     // 속한 네임스페이스 그룹
+  name:                          // 명칭
+spec:
+  rules:
+  - apiGroups: [""]              // 오브젝트의 api그룹
+    resources: ["Service"]       // 오브젝트의 이름
+    verbs: ["get", "list"]       // 실행할 명령어
+    or
+    verbs: 
+    - get
+    - list
+    
+ ----------------------------
+
+apiVersion: 
+kind: RoleBinding
+metadata:
+  name:
+  namespace:
+spec:
+  subjects:
+  - name:
+    kind:
+    namespace:
