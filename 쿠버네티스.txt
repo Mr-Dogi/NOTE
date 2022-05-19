@@ -1,0 +1,98 @@
+// 레플리카셋 replicaset은 파드들을 관리하기 위해 사용하는 서비스이다.
+디플로이먼트 deployment 는 레플리카셋과 파드들을 관리하기 위해 사용하는 상위개념의 서비스이다.
+파드는 쿠버네티스 배포의 기본 단위로써 내부에 하나 이상의 컨테이너를 내부에 생성하고있다.
+네임스페이스는 네임스페이스에 속한 오브젝트들을 논리적으로 구분하는 역할을 한다.
+
+인그레스는 네트워크 트래픽을 파드들에게 분배하기 위한 규칙이 정의되어있으며 
+로드밸런스의 역할과 유사하다.
+
+role은 네임스페이스 단위의 권한을 관리하는 오브젝트이다.
+clusterrole은 클러스터 단위의 권한을 관리하는 오브젝트이다.
+
+binding은 serviceaccount에 role을 부여해주는역할을 수행해준다.
+
+namjy21@naver.com
+
+apiVersion: v1
+kind: Deployment
+metadata:
+  name: hello
+  namespace: name1
+spec:
+  replicas: 3
+  selector: 
+     matchLabels:                // 매칭되는 라벨관리
+         app:                      // 라벨이 다르면 관리 안함
+   template:
+      metadata:
+        name:
+        labels:
+          app:
+      spec:
+         containers:
+           - name:
+             image:     // 사용할 이미지
+             ports:
+                - containerPort:
+                   protocol
+              env:
+              - name:
+                 valueFrom:
+                    configMapKeyRef:
+                      name:
+                      key:
+              - name:
+        
+               envFrom:
+                - configMapRef:
+                     name:
+
+
+               volumeMounts:
+               - name:
+                 mountPath:
+ 
+            volumes:
+            - name:
+               emptyDir: {}
+     
+               hostpath:
+
+               configMapRef:
+                 name:
+                 items:
+                 - key:
+                   path:
+
+
+------------------
+
+// 서비스는 외부에서 들어는 요청을 관리하고있는 파드들에게 전달하는 역할을 한다.
+고유의 ip를 부여받으며 불변 서비스를 사용하는 이유는 파드는 사라질수도있지만 
+서비스에만 접근하면 해당 파드들에 접근할수있기때문이다.
+
+apiVersion: v1
+kind: Service
+metadata:
+  name:
+  namespace:
+spec:
+ ports:
+  - name:                 // 다중 선언을 위해 사용한다.
+    port:                   // 클러스터 내부에서 사용할 포트
+    targetPort:            // 외부에서 클러스터 ip로 접근할 포트
+    protocol:              //사용할 프로토콜 tcp udp http
+
+  - name:
+  ...
+
+  ports:
+    port:
+    targetPort:
+    protocol:
+
+  selector:                //  관리할 파드들의 라벨 지정
+    app:
+  type:                     // clusterip nodeip load
+               
+                   
