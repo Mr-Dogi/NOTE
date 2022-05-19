@@ -1,0 +1,93 @@
+자바 StringBuilder는  동적으로 문자를 늘리고 줄일수있다. char[] 배열을 가지고있다.
+       ArrayList는  동적으로 문자를 늘리고 줄일수있다. 
+
+클래스는 객체를 생성하기 위한 template과 같은 역할을 한다.
+
+객체란 구현할 대상( ? )
+맴버 변수, 함수, 메서드 등
+
+인스턴스 란 설계도를 바탕으로 소프트웨어 서계에서 구현된 구체적인 실체
+                인스턴스는 객체에 포함된다고 볼 수 있다.
+
+
+int[5] a   배열은 불변이다. 이유는 오류를 방지하기 위해서 이다.
+
+*int a(??)
+
+generic 여러타입을 사용하기 위해서 외부에서 사용자에 의해 지정되는 타입을 의미한다
+
+public class Test<타입>{..}
+public interface Test<타입>{..}
+
+public class Test<타입 extends 클래스명 >{..}  
+// 해당 클래스만 사용가능하다는 명시
+부모 클래스가 인터페이스여도 implements는 사용하지 못한다.
+
+추상화란 복잡한 개념을 간단하게 표현 정의 해놓은것을 말하며,
+추상화메서드를 상속받은 객체는 반드시 해당 메서드를 정의하여야된다.
+
+interface는 template와 유사하다.
+상수 final 과 추상화 메서드로 구성하여 사용한다.
+class의 extends와의 차이는 class의 모호함을 해소할수있다는 점이다.
+
+default 클래스 ststic 클래스 로 정의하여 사용할수있다.
+
+
+class또한 abstect로 추상화를 할수있다,
+
+implements 상속할수있다,
+
+extends로 상속받기 가능하다.
+
+
+ T 타입 I intger타입 E 두 타입 모두
+
+<> 타입을 적는 형태로 정의한다. 
+
+Iintger 타입은 wapper클래스로 하나의 객체를 나타낸다.
+Unboxing을 안하는 이상 산술연산은 불가능 
+ex)
+  int i = ii.intValue();
+
+선언의 예
+ex) integer i = new integer(h)
+     String i = new String(s)
+
+
+클래스의 최상위는 object이다  모든 클래스는 object를 상속받는다.
+선언하여 사용하기 적합하지 않다. 이유는 최상위 객체이기때문에 제약을 두기 어렵다.
+
+
+모든 클래스들은 object 클래스를 상속받아 사용하기때문에 object클래스의 메서드를 사용할수있다.
+
+1. .toString()
+
+  문자열 형태로 값을 반환 
+
+2. .equals()  
+  두 값이 일치하는지 여부 논리값 반환 
+
+class MethodGenericType {
+        public static <T> int methodGeneric(T[] list, T item) {         //메서드 제네릭타입  리턴 타입 앞에 제네릭타입을 선언
+               int count = 0;
+               for (T t : list) {
+                       if (item == t) {
+                              count++;
+                       }
+               }
+               return count;
+        }
+}
+
+
+collection 인터페이스 
+
+list 인터페이스  중복을 허용한다.
+
+.add()
+.remove()
+.size()     
+
+set 인터페이스 중복을 허용하지 않는다.
+
+
