@@ -1,0 +1,52 @@
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  namespace: default
+  name: clusterrole
+rules:
+- apiGroups: [""]
+  resources: ["nodes"]
+  verbs: ["get","list"]
+
+---
+
+apiVersin: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding               # serviceaccount에 권한 바인딩
+metadata:
+  name: Binding
+  namespace: default                    # 속하는 네임스페이스 명시
+subjects:
+  - kind: ServiceAccount                # 규칙을 적용받을 오브젝트의 유형
+    name: alicek106                     # 규칙을 적용받을 오브젝트의 명
+    namespace: default
+roleRef:
+  kind: ClusterRole                     # 규칙을 가져올 오브젝트의 유형
+  name: clusterrole                     # 규칙을 불러올 clusterrole의 이름
+  apiGroup: rbac.authorization.k8s.io
+
+
+---
+# aggregation 여러 clusterrole을 재사용하기 위해서 사용한다.
+
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: clusterrole-parent
+  labels:
+    rbac.authorzation.k8s.io/aggregate-to-parent-clusterrole: "true"            # 조상으로 설정
+rules:
+  - apiGroups: [""]
+    resources: ["nodes"]
+    verbs: ["get","list"]
+
+---
+
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+aggregationRule:
+  clusterRoleSelectors:
+    - matchLabels:
+        rbac.authorization.k8s.io/aggregate-to-child-clusterrole: "true"         # 자식이라는 명시
+metadata:
+  name: clusterrole-child
+rules: []                      # 어떠한 권한도 정의하지 않았습니다.

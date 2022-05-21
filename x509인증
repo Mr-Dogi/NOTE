@@ -1,0 +1,21 @@
+쿠버네티스의 x509 인증서를 이용한 사용자 인증방법
+
+x509인증에서 인증서의 CN( commend name )이 User로 O 가 Group 으로 매칭된다.
+
+kubectl config use-context alicek106-x509-context (사용자 명칭)
+# 사용자를 스위칭 하는 명령어
+
+kubectl config get-clusters  # 현재 사용하고있는 클러스터명
+
+kubectl config set-credentials 사용자명 \
+--client-certificate 인증서명 --client-key 비밀키
+# kubeconfig에 사용자 추가
+
+kubectl config set-context 사용자명 \
+--cluster 클러스명 --user 생성한-사용자명
+# 새로운 context 등록
+
+처음에는 하위 인증서를 사용할수없지만, 롤과 클러스터롤을 바인딩하여
+권항을 부여하면된다.
+
+
