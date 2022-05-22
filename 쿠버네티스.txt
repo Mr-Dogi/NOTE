@@ -45,8 +45,8 @@ spec:
               - name:
         
                envFrom:
-                - configMapRef:
-                     name:
+               - configMapRef:
+                    name:
 
 
                volumeMounts:

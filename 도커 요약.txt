@@ -1,0 +1,93 @@
+docker run -i -t / 입출력 프롬프트 활성
+- d // 데몬모드 백그라운드실행 (프로세스가 실행되어야만 작동 -i -t 옵션으로 작동시킬수있다. )
+-- link 대상:별칭
+- p 퍼블리쉬 호스트와 포트 연결 바인딩
+- v 볼륨 마운트
+-- mount옵션 과 같음
+-- volume-from 이미 도커볼륨이 적용된 컨테이너에 추가로 연결
+
+-- lables=key=value 컨테이너를 구분하기 위해서 사용한다.
+-- entrypoint cmd를 인자로 사용할수있다.
+-- arg hello="echo"
+- e 환경변수값 추가
+-- rm 일회용 컨테이너
+--restart=Never 도커가 재시작되었을때 사용할지 여부
+-- name
+-- net = none host conainer:컨테이너명
+-- cpus 1 사용비율
+-- cpu-share 1024 사용비율
+-- memory --swap-memory  메모리 사용비율
+-- device-wirte-iops
+-- device-wirte-bpm
+
+docker 명령어
+
+docker ps // 실행중인 컨테이너 확인
+docker inspect // 자세한 정보 확인
+docker history //이미지 레이어의 변화
+docker prune 사용한지 않는 자원 삭제
+docker rmi, rm 이미지 삭제 컨테이너 삭제
+docker stop
+docker logs, events system df, status
+
+docker login docker pull docker push
+
+docker commit -a 작성자명 -m 설명 (컨테이너) (이미지명 지정)
+// 커밋
+
+docker build -t 이름 지정 -f 파일지정
+
+docker save, load
+docker import, export
+// 설정은 저장하지않는다 또한 용량이 크다
+
+docker network ls
+docker volume ls
+
+docker create network
+- d 드라이브 지정
+-- ip-range  아이피 사용범위
+-- gateway 게이트웨이 지정
+-- subnet 서브넷 ip 지정
+- o 네트워크 옵션값 추가
+-
+
+docker create volume 볼륨드라이브 생성
+
+docker swarm init --adversiti-addr 아이피지정을 위한
+
+docker swarm join --token // 노드로 참여하기 위한 설정
+docker swarm join-token --rotate manager // join token 갱신
+docker swarm leave   // 클러스터 탈퇴
+
+docker node ls        // 노드 확인
+docker node update //  노드정보 업데이트
+docker node rm      //  노드 삭제
+
+docker node remote 마스터권한 부여
+docker node demote 마스터권한 해제
+
+docker service ls // 생성한 서비스확인
+docker service ps 명칭 // 생성한 서비스 자세히 확인
+
+docker service create
+-- name
+-- replicas   // 설정한 개수만큼 유지
+- p            // 호스트와의 포트 바인딩
+-- mount type= source= target=
+-e        // 환경변수 추가
+-- config source= target=    // 컨피그파일 추가
+-- secert source= target=    // 시크릿값 추가
+// 암호화 되어서 저장되어있음
+
+--update-delay 20
+--update-parallilism    // 몇개씩 업데이트 할지
+
+docker service update --image   서비스명
+docker service scale 서비스명= 개수
+docker service rollback
+
+
+
+
+- link 옵션 사용불가 각각 생성되는 노드가 다를수있기에 오류가 생긴다
