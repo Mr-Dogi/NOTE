@@ -120,4 +120,9 @@ Iterator 명칭 = arraylist.interator 를 통해 선언
 .hasNext()     // 다음 요소가 있는지
 .Next();         // 다음요소 출력
 
+Set 인터페이스는 get 메서드를 제공하지 않는다
+순서 없다.
 
+HashSet 은 중복을 허용하지 않고 순서가 없다
+
+TreeSet 은  중복을 허용하지 않지만 정렬을 해준다.
